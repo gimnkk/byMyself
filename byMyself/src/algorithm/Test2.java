@@ -1,6 +1,6 @@
 package algorithm;
 
-public class Test {
+public class Test2 {
 	public static void main(String[] args) {
 		long beforeTime = System.currentTimeMillis();
 		
@@ -8,20 +8,20 @@ public class Test {
 		int k = 100000;
 		int answer = 0;
 		
-		for (int i = 0; i+k <= estimates.length; i++) {
+		int i = 0;
+		while (i + k <= estimates.length) { // 탐색 시, estimates배열 길이 벗어나면 중지
 			int sum = 0; // 합을 저장할 변수 선언
-			for (int j = 0; j + i <= i + k - 1; j++) {
+			for (int j = 0; j + i <= k - 1 + i; j++) { // 시작인덱스부터 k의 길이만큼만 탐색
 				sum += estimates[i + j];
 			}
 			if (sum > answer) // 합이 최댓값보다 크면
 				answer = sum; // 합을 최댓값에 저장
+			i++; // 시작 인덱스 증가
 		}
 		System.out.println(answer);
 		
 		long afterTime = System.currentTimeMillis(); // 코드 실행 후에 시간 받아오기
 		long secDiffTime = (afterTime - beforeTime); //두 시간에 차 계산
-		System.out.println("Test 시간차이(m) : "+secDiffTime/1000d);
-		
-		
+		System.out.println("Test2 시간차이(m) : "+secDiffTime/1000d);
 	}
 }
